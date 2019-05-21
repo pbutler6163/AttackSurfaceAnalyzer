@@ -24,7 +24,7 @@ namespace AttackSurfaceAnalyzer.Collectors.FileSystem
                 }
                 catch (Exception ex)
                 {
-                    Log.Warning("Unable to get access control for {0}: {1}", fileInfo.FullName, ex.Message);
+                    Log.Warning("Unable to get user for {0}: {1}", fileInfo.FullName, ex.Message);
                 }
             }
             else if (fileInfo is DirectoryInfo)
@@ -36,7 +36,7 @@ namespace AttackSurfaceAnalyzer.Collectors.FileSystem
                 }
                 catch (Exception ex)
                 {
-                    Log.Warning("Unable to get access control for {0}: {1}", fileInfo.FullName, ex.Message);
+                    Log.Warning("Unable to get user for {0}: {1}", fileInfo.FullName, ex.Message);
                 }
             }
             else
@@ -61,7 +61,7 @@ namespace AttackSurfaceAnalyzer.Collectors.FileSystem
                 }
                 catch (Exception ex)
                 {
-                    Log.Warning("Unable to get access control for {0}: {1}", fileInfo.FullName, ex.Message);
+                    Log.Warning("Unable to get group for {0}: {1}", fileInfo.FullName, ex.Message);
                 }
             }
             else if (fileInfo is DirectoryInfo)
@@ -73,7 +73,7 @@ namespace AttackSurfaceAnalyzer.Collectors.FileSystem
                 }
                 catch (Exception ex)
                 {
-                    Log.Warning("Unable to get access control for {0}: {1}", fileInfo.FullName, ex.Message);
+                    Log.Warning("Unable to get group for {0}: {1}", fileInfo.FullName, ex.Message);
                 }
             }
             else
