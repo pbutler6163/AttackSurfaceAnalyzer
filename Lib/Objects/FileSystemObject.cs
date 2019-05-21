@@ -24,12 +24,14 @@ namespace AttackSurfaceAnalyzer.ObjectTypes
         public string ContentHash;
         public List<DLLCHARACTERISTICS> Characteristics;
         public string SignatureStatus;
+        public long User;
+        public long Group;
 
         public string RowKey
         {
             get
             {
-                return CryptoHelpers.CreateHash(this.ToString());
+                return CryptoHelpers.CreateHash(JsonConvert.SerializeObject(this));
             }
         }
 

@@ -221,6 +221,12 @@ namespace AttackSurfaceAnalyzer.Collectors.FileSystem
                                         Path = fileInfo.FullName,
                                         Permissions = FileSystemUtils.GetFilePermissions(fileInfo)
                                     };
+
+                                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                                    {
+                                        obj.Owner = LinuxFileSystemUtils.GetFileOwner;
+                                        obj.Group = LinuxFileSystemUtils.GetFileGroup;
+                                    }
                                 }
                             }
                             else
@@ -241,6 +247,11 @@ namespace AttackSurfaceAnalyzer.Collectors.FileSystem
                                     if (INCLUDE_CONTENT_HASH)
                                     {
                                         obj.ContentHash = FileSystemUtils.GetFileHash(fileInfo);
+                                    }
+                                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                                    {
+                                        obj.Owner = LinuxFileSystemUtils.GetFileOwner;
+                                        obj.Group = LinuxFileSystemUtils.GetFileGroup;
                                     }
                                 }
                             }
