@@ -76,14 +76,15 @@ namespace AttackSurfaceAnalyzer.Collectors
                                             }
                                             if (fileInfo.FullName.EndsWith(".cer", StringComparison.CurrentCulture))
                                             {
-                                                var certificate = X509Certificate.CreateFromCertFile(fileInfo.FullName);
+                                                var certificate = new X509Certificate2(fileInfo.FullName);
+                                                Log.Debug("loaded the cert");
                                                 var obj = new CertificateObject()
                                                 {
                                                     StoreLocation = fileInfo.FullName,
                                                     StoreName = "Disk",
                                                     CertificateHashString = certificate.GetCertHashString(),
                                                     Subject = certificate.Subject,
-                                                    Pkcs12 = certificate.Export(X509ContentType.Pkcs12).ToString()
+                                                    Pkcs12 = certificate.HasPrivateKey ? "redacted" : certificate.Export(X509ContentType.Pkcs12).ToString()
                                                 };
                                                 DatabaseManager.Write(obj, this.runId);
                                             }
@@ -94,8 +95,6 @@ namespace AttackSurfaceAnalyzer.Collectors
                                             Log.Debug("{0} {1}-{2}",e.GetType().ToString(), e.Message, e.StackTrace);
                                         }
                                     }));
-
-
                 }
             }
 

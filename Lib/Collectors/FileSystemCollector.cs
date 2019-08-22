@@ -165,7 +165,7 @@ namespace AttackSurfaceAnalyzer.Collectors
                         }
                         catch (Exception ex)
                         {
-                            Log.Warning(ex, "Error processing {0}", fileInfo?.FullName);
+                            Log.Debug(ex, "Error processing {0}", fileInfo?.FullName);
                         }
                     }));
                 }
